@@ -1,0 +1,9 @@
+.success {
+    padding: 20px;
+    background-color: greenyellow;
+}
+
+.fail {
+    padding: 20px;
+    background-color: brown;
+}
