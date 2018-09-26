@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <label>Server Name</label>
+
+            <!-- <input type='text' class='form-control' (input)='onInput($event)'> -->
+            <input type='text' class='form-control' [(ngModel)]='serverName'>
+            <button class='btn btn-primary' [disabled]="!isEnabledCreate" (click)="onCreate()">Create</button>
+
+            <p> {{ serverCreateStatus }}</p>
+        </div>
+    </div>
+</div>
