@@ -1,13 +1,21 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <label>Server Name</label>
+            <label [ngClass]="{whiteText: serverName === ''}" 
+            [ngStyle]="{backgroundColor: getBackgroundColor()}">Server Name</label>
 
             <!-- <input type='text' class='form-control' (input)='onInput($event)'> -->
             <input type='text' class='form-control' [(ngModel)]='serverName'>
-            <button class='btn btn-primary' [disabled]="!isEnabledCreate" (click)="onCreate()">Create</button>
+            <button class='btn btn-primary' [disabled]="!isEnabledCreate()" (click)="onCreate()">Create</button>
 
-            <p> {{ serverCreateStatus }}</p>
+            <ol *ngIf='servers'>
+                <li *ngFor="let server of servers">{{ server }}</li>
+            </ol>
+            <p *ngIf='isServerCreated; else noServerCreated'> {{ serverCreateStatus }}</p>
         </div>
     </div>
 </div>
+
+<ng-template #noServerCreated>
+    <p> No server created :)</p>
+</ng-template>

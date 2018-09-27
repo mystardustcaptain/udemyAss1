@@ -7,28 +7,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionPanelComponent implements OnInit {
 
-  isEnabledCreate: boolean = false;
   serverCreateStatus: string = "There is no server created."
   serverName = ''
+  isServerCreated = false;
+  servers: string[] = []
 
   constructor() {
-    setTimeout(() => {
-      this.isEnabledCreate = true;
-    }, 2000);
   }
 
   ngOnInit() {
   }
 
   onCreate() {
+    this.isServerCreated = true;
     this.serverCreateStatus = "Server is created!"
 
-    if (this.serverName)
+    if (this.serverName) {
       this.serverCreateStatus += " Name: " + (this.serverName);
+      this.servers.push(this.serverName);
+    }
   }
 
-  onInput(event: Event) {
-    this.serverName = event.target.value;
+  // onInput(event: Event) {
+  //   this.serverName = event.target.value;
+  // }
+
+  isEnabledCreate(): boolean {
+    return this.serverName != ''
   }
 
+  getBackgroundColor() {
+    if (this.serverName === '')
+      return 'red';
+    else
+      return 'green';
+  }
 }
